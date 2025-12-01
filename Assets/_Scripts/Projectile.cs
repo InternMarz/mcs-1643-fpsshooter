@@ -22,7 +22,13 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log($"Hit object {collision.gameObject.transform.name}");
+
         //check if this is an ememy
+        Enemy hitEnemy = collision.gameObject.GetComponent<Enemy>();
+        if ( hitEnemy != null )
+        {
+            hitEnemy.TakeDamage(Damage);
+        }
         // if it is, notify it of damage
         Destroy(gameObject);
     }
